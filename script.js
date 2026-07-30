@@ -29,6 +29,10 @@
       { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
     );
     revealables.forEach((el) => observer.observe(el));
+    // Red de seguridad: si por lo que sea el observer no llega a disparar
+    // para algun elemento (p.ej. un navegador con una implementacion rara),
+    // no se queda invisible para siempre.
+    setTimeout(() => revealables.forEach((el) => el.classList.add("is-visible")), 2500);
   } else {
     revealables.forEach((el) => el.classList.add("is-visible"));
   }
