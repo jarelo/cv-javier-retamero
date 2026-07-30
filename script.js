@@ -7,9 +7,10 @@
   if (stored) root.setAttribute("data-theme", stored);
 
   toggle.addEventListener("click", () => {
-    const current =
-      root.getAttribute("data-theme") ||
-      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    // Oscuro es el tema por defecto (ver style.css, sin deteccion de
+    // preferencia del sistema a proposito) — sin data-theme guardado, el
+    // estado actual siempre es "dark".
+    const current = root.getAttribute("data-theme") || "dark";
     const next = current === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
     localStorage.setItem(STORAGE_KEY, next);
